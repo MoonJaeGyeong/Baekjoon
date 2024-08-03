@@ -28,7 +28,7 @@ class Main{
             for(int i=0; i<M; i++){
                 for(int j=0; j<N; j++){
                     if(map[i][j] == 1 && !visited[i][j]){
-                        bfs(i,j);
+                        dfs(i,j);
                         answer++;
                     }
                 }
@@ -44,7 +44,7 @@ class Main{
         for(int k=0; k<8; k++){
             int move_i = i + di[k];
             int move_j = j + dj[k];
-            if(move_i >= 0 && move_i < N && move_j >=0 && move_j < M && map[move_i][move_j] == 1 && !visited[move_i][move_j]){
+            if(move_i >= 0 && move_i < M && move_j >=0 && move_j < N && map[move_i][move_j] == 1 && !visited[move_i][move_j]){
                 visited[move_i][move_j] = true;
                 dfs(move_i, move_j);
             }
