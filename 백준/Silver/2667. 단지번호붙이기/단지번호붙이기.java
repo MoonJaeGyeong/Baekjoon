@@ -28,7 +28,7 @@ class Main{
             for(int j=0; j<N; j++){
                 if(map[i][j] == 1 && !visited[i][j]){
                     numberOfHousing = 0;
-                    dfs(i,j);
+                    bfs(i,j);
                     answer++;
                     numberOfHouse.add(numberOfHousing);
                 }
@@ -57,8 +57,26 @@ class Main{
     }
 
     public static void bfs(int i, int j){ // 큐
+        int[] ij = {i, j};
+        Queue<int[]> queue = new ArrayDeque<>();
+        queue.add(ij); // 처음 마을
+        visited[i][j] = true; // 처음 마을
+        numberOfHousing = 1; // 처음 마을
 
+        while (!queue.isEmpty()){
+            int[] xy = queue.poll();
+
+            for(int k=0; k<4; k++){
+                int move_i = xy[0] + di[k];
+                int move_j = xy[1] + dj[k];
+                if(move_i >= 0 && move_i < N && move_j >= 0 && move_j < N && map[move_i][move_j] == 1 && !visited[move_i][move_j]){
+                    int[] didj = {move_i, move_j};
+                    visited[move_i][move_j] = true;
+                    queue.add(didj);
+                    numberOfHousing++;
+                }
+            }
+        }
     }
-
 
 }
