@@ -2,7 +2,7 @@ class Solution {
      public  int solution(String[] friends, String[] gifts){
         int friendsLength = friends.length;
         int giftExcel[][] = new int[friendsLength][friendsLength];
-        int giftIndex[][] = new int[friendsLength][2];
+        int giftIndex[][] = new int[friendsLength][1];
         int max = -1;
 
         for(String gift : gifts){
@@ -12,8 +12,8 @@ class Solution {
             int senderIndex = getIndex(friends,sender);
             int receiverIndex = getIndex(friends, receiver);
 
-            giftIndex[senderIndex][1]++;
-            giftIndex[receiverIndex][1]--;
+            giftIndex[senderIndex][0]++;
+            giftIndex[receiverIndex][0]--;
 
             giftExcel[senderIndex][receiverIndex]++;
         }
@@ -22,10 +22,8 @@ class Solution {
             for(int j=0; j<giftExcel.length; j++){
 
                 if(i!=j){
-                    if(giftExcel[i][j] == giftExcel[j][i]){
-                        if(giftIndex[i][1] > giftIndex[j][1]){
-                            giftNumber++;
-                        }
+                    if(giftExcel[i][j] == giftExcel[j][i] && giftIndex[i][0] > giftIndex[j][0]){
+                        giftNumber++;
                     }
                     if(giftExcel[i][j] > giftExcel[j][i]){
                         giftNumber++;
